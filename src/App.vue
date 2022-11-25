@@ -22,6 +22,8 @@
       </div>
 
       <v-spacer></v-spacer>
+      <router-link to="/" style="color: red">Home</router-link> |
+      <router-link to="/about" style="color: red">About</router-link>
 
       <v-btn
         href="https://github.com/vuetifyjs/vuetify/releases/latest"
