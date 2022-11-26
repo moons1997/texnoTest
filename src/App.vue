@@ -1,6 +1,6 @@
 <template>
   <v-app>
-    <v-app-bar app color="primary" dark>
+    <v-app-bar app color="cyan lighten-5">
       <div class="d-flex align-center">
         <v-img
           alt="Vuetify Logo"
@@ -11,28 +11,38 @@
           width="40"
         />
 
-        <v-img
+        <!-- <v-img
           alt="Vuetify Name"
           class="shrink mt-1 hidden-sm-and-down"
           contain
           min-width="100"
           src="https://cdn.vuetifyjs.com/images/logos/vuetify-name-dark.png"
           width="100"
-        />
+        /> -->
       </div>
 
       <v-spacer></v-spacer>
-      <router-link to="/" style="color: red">Home</router-link> |
-      <router-link to="/about" style="color: red">About</router-link>
-
-      <v-btn
+      <!-- <v-btn
+          href="/"
+          text
+          color="secondary"
+        >
+          <span class="mr-2">Home</span>
+        </v-btn> -->
+      <v-btn href="/test" text>
+        <span>Test</span>
+      </v-btn>
+      <v-btn href="/about" text>
+        <span>About</span>
+      </v-btn>
+      <!-- <v-btn
         href="https://github.com/vuetifyjs/vuetify/releases/latest"
         target="_blank"
         text
       >
         <span class="mr-2">Latest Release</span>
         <v-icon>mdi-open-in-new</v-icon>
-      </v-btn>
+      </v-btn> -->
     </v-app-bar>
 
     <v-main>
@@ -49,3 +59,6 @@ export default {
   }),
 };
 </script>
+<style lang="sass">
+@import '@/assets/styles/variables.scss'
+</style>

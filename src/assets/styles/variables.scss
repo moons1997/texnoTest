@@ -1,0 +1,46 @@
+//COLORS
+$primary: #7467f0;
+$success: #8effc3;
+$text-color: #707070;
+$secondary: #f7f7f7;
+$danger: #ffc6c6;
+$warning: #ffe5c6;
+
+// @import "~bootstrap/scss/bootstrap.scss";
+
+// SIDEBAR
+$sidebar-width: 250px;
+$sidebar-logo-width: 80px;
+$sidebar-main-content: 660px;
+
+//CUSTOM INPUT
+$input-text-placeholder: #a7bbbd;
+$disabled-input: #f4f4f4;
+
+//CUSTOM CHECKBOX
+$switch-active-bg-color: #5dca3e !default;
+$switch-inactive-bg-color: #e8e8e8 !default;
+$switch-knob-bg-color: #ffffff !default;
+$switch-disabled-knob-bg-color: #f8f8f8 !default;
+$checkbox: #b8e0cc !default;
+
+//CUSTOM SELECT
+$select-bg-color: #fafafa !default;
+//DARK-LIGHT
+html[data-theme="lightMode"] {
+  --color-background: #fff;
+  --color-content-background: #f8f8f8;
+  --color-text: #000;
+  --color-card: #ffffff;
+  --color-dropdown-hovered: #f1f1f1;
+  --color-f7f7f7: #f7f7f7;
+}
+
+html[data-theme="darkMode"] {
+  --color-background: #12192c;
+  --color-content-background: #161d31;
+  --color-text: #fff;
+  --color-card: #283046;
+  --color-dropdown-hovered: #282b3e;
+  --color-f7f7f7: #283046;
+}
