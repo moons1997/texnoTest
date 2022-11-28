@@ -20,18 +20,27 @@
         >
           <span class="mr-2">Home</span>
         </v-btn> -->
-      <v-btn href="/test" text>
-        <span>Test</span>
-      </v-btn>
-      <v-btn href="/forms" text>
-        <span>Forms</span>
-      </v-btn>
-      <v-btn href="/studet" text>
-        <span>Student</span>
-      </v-btn>
-      <v-btn href="/login" text v-if="!this.$store.state.user">
-        <span>Login</span>
-      </v-btn>
+      <router-link to="/test"
+        ><v-btn text>
+          <span>Test</span>
+        </v-btn>
+      </router-link>
+      <router-link to="/forms">
+        <v-btn text>
+          <span>Forms</span>
+        </v-btn>
+      </router-link>
+      <router-link to="/studet"
+        ><v-btn text>
+          <span>Student</span>
+        </v-btn></router-link
+      >
+      <router-link to="/login" v-if="!this.$store.state.user"
+        ><v-btn text>
+          <span>Login</span>
+        </v-btn></router-link
+      >
+
       <v-btn text v-if="this.$store.state.user" @click="LogOut">
         <span>Log out</span>
       </v-btn>
