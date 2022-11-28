@@ -68,7 +68,7 @@
 
         <v-card-text class="mt-2">
           <div class="text-h1 text-center">
-            {{ result.countCorrectAnswer }}/{{ result.countQuize }}
+            {{ result.countCorrectAnswer }}/{{ quizes.length }}
           </div>
         </v-card-text>
 
@@ -283,9 +283,10 @@ export default {
   },
   created() {
     var localQuizes = localStorage.getItem("quizes");
-    this.quizes =
-      JSON.parse(localQuizes).length > 0 ? JSON.parse(localQuizes) : [];
-    this.result.countQuize = JSON.parse(localQuizes).length;
+    this.quizes = this.quizes.length > 0 ? this.quizes : JSON.parse(localQuizes)
+      // JSON.parse(localQuizes).length > 0 ? JSON.parse(localQuizes) : [];
+      
+    this.result.countQuize = this.quizes.length;
   },
   methods: {
     AddAnswer() {
@@ -389,29 +390,76 @@ export default {
         ],
       };
     },
+    CheckSingleAnswerQuiz(answers){
+      let res = false;
+      answers.map((answer) => {
+        if (answer.userAnswer == true && answer.correct == true) {
+          res =  true
+        }
+      })
+      return res
+    },
+    CheckMoreAnswerQuiz(answers){
+      let res = false;
+      let counter = 0;
+      let countCorrect = answers.filter(item => item.correct == true).length
+      answers.map((answer) => {
+        if (answer.userAnswer == true && answer.correct == true) {
+          counter += 1
+        }
+      })
+      res = counter == countCorrect
+      return res
+    },
+    CheckTextAnswerQuiz(answers){
+      let res = false;
+      answers.map((answer) => {
+         if (answer.userAnswer?.toUpperCase() == answer.corerectTxt.toUpperCase()) {
+          res = true
+         }
+      })
+      return res;
+    },
     QuizFinsh() {
       this.finish = true;
       this.result.countCorrectAnswer = 0;
       this.quizes.map((quize) => {
-        quize.answers.map((answer) => {
-          switch (quize.type) {
+        switch (parseInt(quize.type)) {
             case 1:
-              if (answer.userAnswer == true && answer.correct == true) {
+              if(this.CheckSingleAnswerQuiz(quize.answers)){
                 this.result.countCorrectAnswer += 1;
               }
               break;
             case 2:
-              // if (answer.userAnswer == true && answer.correct == true) {
-              //   alert(answer.text);
-              // }
-              break;
-            case 3:
-              if (answer.userAnswer == answer.corerectTxt) {
+              if( this.CheckMoreAnswerQuiz(quize.answers)){
                 this.result.countCorrectAnswer += 1;
               }
               break;
-          }
-        });
+            case 3:
+              if(this.CheckTextAnswerQuiz(quize.answers)){
+                this.result.countCorrectAnswer += 1;
+              }
+              break;
+        }
+        // quize.answers.map((answer) => {
+        //   switch (quize.type) {
+        //     case 1:
+        //       if (answer.userAnswer == true && answer.correct == true) {
+        //         this.result.countCorrectAnswer += 1;
+        //       }
+        //       break;
+        //     case 2:
+        //       // if (answer.userAnswer == true && answer.correct == true) {
+        //       //   alert(answer.text);
+        //       // }
+        //       break;
+        //     case 3:
+        //       if (answer.userAnswer.toUpperCase() == answer.corerectTxt.toUpperCase()) {
+        //         this.result.countCorrectAnswer += 1;
+        //       }
+        //       break;
+        //   }
+        // });
       });
     },
   },
