@@ -29,6 +29,12 @@
       <v-btn href="/studet" text>
         <span>Student</span>
       </v-btn>
+      <v-btn href="/login" text v-if="!this.$store.state.user">
+        <span>Login</span>
+      </v-btn>
+      <v-btn text v-if="this.$store.state.user" @click="LogOut">
+        <span>Log out</span>
+      </v-btn>
     </v-app-bar>
 
     <v-main>
@@ -43,6 +49,11 @@ export default {
   data: () => ({
     //
   }),
+  methods: {
+    LogOut() {
+      this.$store.commit("logout");
+    },
+  },
 };
 </script>
 <style lang="sass">

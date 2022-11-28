@@ -61,15 +61,14 @@
                 v-model="filter.courseId"
                 placeholder="filter by course"
                 :options="courseList"
-                @changeSelect="ChangeCourse"
               />
             </div>
             <div>
-              <button class="custom-button mr-2">Refresh</button>
+              <button class="custom-button" @click="RefreshFilter">Refresh</button>
             </div>
-            <div>
+            <!-- <div>
               <button class="custom-button">Filter</button>
-            </div>
+            </div> -->
           </div>
 
           <v-simple-table dense border="1">
@@ -82,7 +81,7 @@
                 </tr>
               </thead>
               <tbody>
-                <tr v-for="(item, index) in studetns" :key="item.name + 'st'">
+                <tr v-for="(item, index) in FilteredList()" :key="item.name + 'st'">
                   <td>{{ item.name }}</td>
                   <td>{{ item.course }}</td>
                   <td>
@@ -131,7 +130,7 @@ export default {
       },
       filter: {
         name: "",
-        courseId: "",
+        courseId: null,
       },
       editedIndex1: -1,
       is_added: true,
@@ -142,6 +141,28 @@ export default {
     // this.displayMessage();
   },
   methods: {
+    RefreshFilter(){
+      this.filter = {
+        name: "",
+        courseId: null,
+      }
+    },
+    FilteredList(type) {
+        return this.studetns.filter((item) =>
+          {
+            if(!!this.filter.name){
+              return item.name.toLowerCase().includes(this.filter.name.toLowerCase())
+            }else if(!!this.filter.courseId){
+              return parseInt(item.courseId) == parseInt(this.filter.courseId)
+            }else{
+              return item
+            }
+          }
+        )
+        // : this.studetns.filter((item) =>
+        //    parseInt(item.courseId) == parseInt(this.filter.courseId)
+        //  );
+    },
     AddStudet() {
       this.CheckValidation(this.data);
       if (this.Check(this.data)) {

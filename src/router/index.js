@@ -4,6 +4,7 @@ import HomeView from "../views/HomeView.vue";
 import TestView from "@/views/TestView.vue";
 import FormsView from "@/views/FromsView.vue";
 import StudentView from "@/views/StudentView.vue";
+import LoginView from "@/views/LoginView.vue"
 
 Vue.use(VueRouter);
 
@@ -27,6 +28,11 @@ const routes = [
     path: "/studet",
     name: "studet",
     component: StudentView,
+  },
+  {
+    path: "/login",
+    name: "login",
+    component: LoginView,
   },
 ];
 
