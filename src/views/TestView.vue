@@ -283,7 +283,7 @@ export default {
   },
   created() {
     var localQuizes = localStorage.getItem("quizes");
-    this.quizes = this.quizes.length > 0 ? this.quizes : JSON.parse(localQuizes)
+    this.quizes = this.quizes.length > 0 ? this.quizes : (!!JSON.parse(localQuizes) ? JSON.parse(localQuizes) : [])
       // JSON.parse(localQuizes).length > 0 ? JSON.parse(localQuizes) : [];
       
     this.result.countQuize = this.quizes.length;
